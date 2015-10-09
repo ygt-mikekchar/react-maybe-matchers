@@ -20,6 +20,13 @@ such nodes.
 
 ## Requirements
 
+In order to make sure that the user can use whatever version of React
+they want, we assume that the variable `React` already points to
+the React package (FIXME: I wonder if there is a better way).  Just
+to save typing, we will use the following alias:
+
+    Utils = React.addons.TestUtils
+
 The [JasmineMonad](./JasmineMonad.litcoffee)is a "maybe" monad that
 allows us to chain our matcher functions in a fluent way.
 
