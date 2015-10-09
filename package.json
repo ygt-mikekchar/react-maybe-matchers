@@ -1,0 +1,22 @@
+{
+  "name": "react-maybe-matchers",
+  "version": "0.0.1",
+  "description": "Jasmine matchers for React in the form of maybe monads",
+  "main": "lib/ReactMaybeMatchers.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mike Charlton",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^0.13.3",
+    "jasmine": "^2.3.2"
+  },
+  "devDependencies": {
+    "webpack": "1.11.0",
+    "cjsx-loader": "2.0.1",
+    "coffee-loader": "0.7.2",
+    "coffee-script": "1.9.3"
+  }
+}
