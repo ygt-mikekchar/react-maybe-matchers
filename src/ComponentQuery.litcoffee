@@ -1,4 +1,4 @@
-# Component Query
+# ComponentQuery
 
 When we first start out, we are likely to have only a single
 component.  This monad is used for querying that component
