@@ -2,7 +2,7 @@ path = require("path")
 
 module.exports = {
   entry: {
-    ReactMaybeMatchers: path.join(__dirname, "/src/ReactMatchers.litcoffee"),
+    ReactMaybeMatchers: path.join(__dirname, "/src/ReactMaybeMatchers.litcoffee"),
     spec: path.join(__dirname, "/spec/spec.litcoffee"),
   },
   output: {
