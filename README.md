@@ -73,14 +73,14 @@ pass a *matcher function*.
 ```
 
 `toBeAComponent` will run `matcherFn` passing it a
-(ComponentQuery object)[src/ComponentQuery.litcoffee]
+[ComponentQuery object](src/ComponentQuery.litcoffee)
 
 #### Component Query
 
-(ComponentQuery)[src/ComponentQuery.litcoffee] allows you to
+[ComponentQuery](src/ComponentQuery.litcoffee) allows you to
 search for a specific component.  Currently implemented:
 
-  - (tags)[src/ComponentQuery.litcoffee#testing-for-dom-tags](tagname)
+  - [tags(tagname)](src/ComponentQuery.litcoffee#testing-for-dom-tags)
 
 
 
