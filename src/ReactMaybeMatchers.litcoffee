@@ -1,8 +1,8 @@
-# React Maybe Matchers
+# React Maybe Matchers for Jasmine
 
-Tests using the React test utilities are both difficult to read and inconvenient
-to type.  As much as possible, I think it is best to write Jasmine matchers
-to make the tests easier to write.
+Tests using the React test utilities directly are both difficult to read
+and inconvenient to type. These matchers are intended to to make it
+easier to write tests and to understand what they are doing later.
 
 ## DSL for React tests
 
