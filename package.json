@@ -2,6 +2,10 @@
   "name": "react-maybe-matchers",
   "version": "0.0.1",
   "description": "Jasmine matchers for React in the form of maybe monads",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ygt-mikekchar/react-maybe-matchers.git"
+  },
   "main": "lib/ReactMaybeMatchers.js",
   "scripts": {
     "build": "webpack",
@@ -17,6 +21,7 @@
     "webpack": "1.11.0",
     "cjsx-loader": "2.0.1",
     "coffee-loader": "0.7.2",
-    "coffee-script": "1.9.3"
+    "coffee-script": "1.9.3",
+    "docco": "0.7.0"
   }
 }
