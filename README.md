@@ -135,6 +135,12 @@ This project is written in
 used in the TeX text processing system.  You can
 [browse the source code](src/ReactMatchers.litcoffee#react-matchers) for this project.
 
+## Tests
+
+You can
+[run the tests](http://ygt-mikekchar.github.io/react-maybe-matchers/spec/index.html)
+in your browser.
+
 ## Under Development
 
 react-maybe-matchers is currently under development, but is very slightly
