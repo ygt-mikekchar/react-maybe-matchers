@@ -43,6 +43,11 @@ that allows you to filter and match collections of React components.
 
       constructor: (@value, @util, @testers, @messages) ->
         super(@value, @util, @testers, @messages)
+
+#### English Helpers
+
+It is nice to have use this word to make the expectation read more easily.
+
         @contains = this
 
 Most of the methods on `ComponentQuery` will actually want to

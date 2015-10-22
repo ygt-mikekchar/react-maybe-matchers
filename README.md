@@ -88,8 +88,11 @@ to allow you to further refine your search. If the query failed (there were
 no matching components), then the resultant `ComponentFilter` will not
 match.
 
-For fluent use of English, `ComponentQuery` defines a function, `contains` that
-does nothing.  This allows you to write an expectation like
+For fluent use of English, `ComponentQuery` defines:
+
+  - **[contains](src/ComponentQuery.litcoffee#english-helpers)**
+
+This allows you to write an expectation like:
 
 ```coffee
   expect(component).toBeAComponent (it) ->
@@ -105,6 +108,15 @@ filter a collection of components.  Currently implemented:
     Filters all the contained nodes for those with a specific css class.
   - **[exactly(num)](src/ComponentFilter.litcoffee#enforcing-the-number-of-nodes)**:
     Matches if the number of nodes is num.  Does not match otherwise
+
+For fluent use of English, `ComponentFilter` defines:
+
+  - **[with](src/ComponentFilter.litcoffee#english-helpers)**
+  - **[and](src/ComponentFilter.litcoffee#english-helpers)**
+  - **[time](src/ComponentFilter.litcoffee#english-helpers)**
+  - **[times](src/ComponentFilter.litcoffee#english-helpers)**
+
+#### Difference between ComponentQuery and ComponentFilter
 
 Keep in mind that `ComponentQuery` drills down into the tree and finds a collection
 of components.  `ComponentFilter` works on that collection of components and does

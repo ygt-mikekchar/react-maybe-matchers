@@ -32,13 +32,16 @@ The matchers need to pluralize strings, so we need to load
 
     class ComponentFilter extends JasmineMonad
 
+      constructor: (@value, @util, @testers, @messages) ->
+        super(@value, @util, @testers, @messages)
+
+#### English helpers
+
 Because this monad deals with filtering lists of components
 it is nice to have a couple of dummy properties that
 allow us to use a more fluent English expression.
 `@with`, `@and` and `time` can be used for that purpose.
 
-      constructor: (@value, @util, @testers, @messages) ->
-        super(@value, @util, @testers, @messages)
         @with = this
         @and = this
         @time = this
