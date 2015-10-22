@@ -29,7 +29,7 @@ This project is written in
 used in the TeX text processing system.
 
 You can
-[browse the source code](src/ReactMatchers.litcoffee#react-maybe-matchers) for this project.
+[browse the source code](src/ReactMaybeMatchers.litcoffee#react-maybe-matchers) for this project.
 
 ## Dependencies
 
