@@ -80,8 +80,21 @@ pass a *matcher function*.
 [ComponentQuery](src/ComponentQuery.litcoffee) allows you to
 search for a specific component.  Currently implemented:
 
-  - [tags(tagname)](src/ComponentQuery.litcoffee#testing-for-dom-tags)
+  - **[tags(tagname)](src/ComponentQuery.litcoffee#testing-for-dom-tags)**:
+    Search for a specific HTML tag.
 
+A `ComponentQuery` will return a [ComponentFilter](src/ComponentFilter.litcoffee)
+to allow you to further refine your search. If the query failed (there were
+no matching components), then the resultant `ComponentFilter` will not
+match.
+
+For fluent use of English, `ComponentQuery` defines a function, `contains` that
+does nothing.  This allows you to write an expectation like
+
+```coffee
+  expect(component).toBeAComponent (it) ->
+    it.contains.tags("h1").result()
+```
 
 
 ## License
