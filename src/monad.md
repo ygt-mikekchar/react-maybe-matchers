@@ -1,7 +1,8 @@
 # What is a Monad?
 
-At the risk of writing "Yet another monad tutorial", I want to
-write a little bit about monads.
+At the risk of writing
+[yet another monad tutorial](https://wiki.haskell.org/Monad_tutorials_timeline),
+I want to write a little bit about monads.
 
 Although many incredibly obtuse articles have been written about
 monads they are actually quite simple.
@@ -22,11 +23,13 @@ class Monad
 
 That bit wasn't difficult!  That's all you have to do to wrap a value.
 However, I mentioned some rules previously.  One of the rules is that
-the functions that work on monads have to return monads.  So they need
-a simple way to construct a monad from a value.  We could easily use
-the constructor, but then we need to remember the class of the monad
-that we want to construct.  It's easier to make a method that does
-that for us.
+the functions that work on monads have to return monads.  We need
+a simple way to construct a monad from a value.  You may be excused for
+thinking that the constructor is a perfectly simply wat to construct
+objects, but it has a small problem.  If we make a subclass of this
+class, it might be difficult to know what the name of the constructor
+is.  For this (and other historical reasons), we will create a helper
+method.
 
 ```coffee
   return: (value) ->
@@ -99,23 +102,45 @@ expect(new Monad(42).addFive().double().value).toEqual(94)
 expect(new Monad(42).double().addFive().value).toEqual(89)
 ```
 
-## The Maybe monad
+### Our complete Identity Monad
 
-As you can see, monads are not actually very complicated.  The
-chaining is nice, but you might reasonably think that the monad
-is still a bit more complicated that it needs to be if you
-are only interested in chaining functions.  You would be correct.
-The previous monad is known as the Identity monad and it is
-fairly boring and useless.  There are other more interesting
-monads.  Here is a maybe monad:
+Here is the code again for the entire monad, along with our two
+numerical functions:
 
 ```coffee
-class MaybeMonad
+class Monad
   constructor: (@value) ->
 
   return: (value) ->
     @constructor(value)
 
+  bind: (func) ->
+    func(@value)
+
+  double: ->
+    @bind (value) ->
+      @return(value * 2)
+
+  addFive: ->
+    @bind (value) ->
+      @return(value + 5)
+```
+
+As you can see, monads are not actually very complicated.  The
+chaining is nice, but you might reasonably think that the monad
+is still a bit more complicated that it needs to be if you
+are only interested in chaining functions.  You would be correct.
+This is an example of an "Identity Monad".  It doesn't really give
+you any interesting abilities and is arguably a waste of typing.
+
+## The Maybe monad
+
+While the previous monad is fairly boring and useless, there are
+other more interesting monads.  By simply changing the definition
+of the `bind` method we can turn this into a "Maybe Monad".
+
+```coffee
+class MaybeMonad extends Monad
   bind: (func) ->
     if @value? then func(@value) else this
 ```
@@ -125,8 +150,7 @@ only runs the function in `bind` if the value isn't undefined
 (or null).  That doesn't seem to be very exciting, but it has
 tremendously useful consequences.
 
-Imagine that we add our `double` and `addFive` methods to this
-Maybe monad.  Let's add another one, invert:
+Let's add another numerical method to this monad: invert.
 
 ```coffee
   invert: ->
@@ -141,17 +165,28 @@ Basically we are saying that we can invert values that are
 not zero, but that 1 / 0 is undefined.  So we can safely do:
 
 ```coffee
-expect(new MaybeMonad(42).invert().double().addFive()).toEqual((1/42)*2 + 5)
+expect(new MaybeMonad(42).invert()
+                         .double()
+                         .addFive()
+                         .value).toEqual((1/42)*2 + 5)
 ```
 
-But we can also safely do:
+This is unsurprising, but we can also safely do:
 
 ```coffee
-expect(new MaybeMonad(0).invert().double().addFive()).toBeUndefined()
+expect(new MaybeMonad(0).invert()
+                        .double()
+                        .addFive()
+                        .value).toBeUndefined()
 ```
 
-The first operation returns undefined and we are able to chain all the
-other operations without needing to explicitly error check as we go.
+Even though the the invert operation is undefined, we don't have
+to do any error checking along the way, because the Maybe Monad
+simply declines to run any of the functions after the first one
+fails.  Instead it forwards on the undefined value all the way
+to the end.
 
-This is the power of the Maybe Monad.
+This is the power of the Maybe Monad.  There are many, many useful
+monads, but even if you only learn to use the maybe monad it will
+serve you well.
 

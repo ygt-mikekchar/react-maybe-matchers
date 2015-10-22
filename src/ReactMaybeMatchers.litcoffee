@@ -24,11 +24,11 @@ you often have to search through Reacts tree to find the things you want
 to test.  In Rspec (in Ruby) you can often chain matchers together to create
 complex and readable tests.  Alas, this is not possible for Jasmine.
 
-To compensate for this we will make a Maybe monad which will allow us to
-chain a series of filters.  People often get flustered about monads, but
-their use is very straight forward.
+To compensate for this we will make a [Maybe monad](monad.md#what-is-a-monad)
+which will allow us to chain a series of filters.  People often get flustered
+about monads, but their use is very straight forward.
 
-In example, above, `toBeAComponent` accepts a callback, which it will call,
+In the example above, `toBeAComponent` accepts a callback, which it will call,
 funishing a monad called `it`.  We can then chain a series of tests.
 
 The chain in this example means that I am expecting my component to contain a DOM `div`
