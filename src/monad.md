@@ -73,7 +73,7 @@ implement these functions on the monad class itself.  Here is an example:
 ```
 
 A little explanation is in order for those who are not so experienced with
-idiomatic Coffeescript.  `double` constains a single statement: a call to
+idiomatic Coffeescript.  `double` contains a single statement: a call to
 `@bind`.  Remember that `@bind` takes a function as a parameter.  We have
 elided the parenthesis and have passed in an inline function.  A less
 idiomatic (though arguably clearer) version would look like:
