@@ -64,7 +64,7 @@ ReactMaybeMatchers = require("react-maybe-matchers")
 
 describe "some wonderfule thing", ->
   beforeEach ->
-    @addMatchers(ReactMatchers)
+    @addMatchers(ReactMaybeMatchers)
 
 ```
 
