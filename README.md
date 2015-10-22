@@ -96,6 +96,20 @@ does nothing.  This allows you to write an expectation like
     it.contains.tags("h1").result()
 ```
 
+#### Component Filter
+
+[ComponentFilter](src/ComponentQuery.litcoffee#componentfilter) allows you to
+filter a collection of components.  Currently implemented:
+
+  - **[cssClass(cssClass)](src/ComponentFilter.litcoffee#filtering-nodes-by-css-class)**:
+    Filters all the contained nodes for those with a specific css class.
+  - **[exactly(num)](src/ComponentFilter.litcoffee#enforcing-the-number-of-nodes)**:
+    Matches if the number of nodes is num.  Does not match otherwise
+
+Keep in mind that `ComponentQuery` drills down into the tree and finds a collection
+of components.  `ComponentFilter` works on that collection of components and does
+not drill down further.
+
 ## License
 
 react-maybe-matchers is distributed under the [MIT licence](./LICENSE).
