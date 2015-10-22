@@ -25,7 +25,7 @@ That bit wasn't difficult!  That's all you have to do to wrap a value.
 However, I mentioned some rules previously.  One of the rules is that
 the functions that work on monads have to return monads.  We need
 a simple way to construct a monad from a value.  You may be excused for
-thinking that the constructor is a perfectly simply wat to construct
+thinking that the constructor is a perfectly simply way to construct
 objects, but it has a small problem.  If we make a subclass of this
 class, it might be difficult to know what the name of the constructor
 is.  For this (and other historical reasons), we will create a helper
@@ -86,7 +86,7 @@ idiomatic (though arguably clearer) version would look like:
 So all this function does is run `@bind`, passing it a function that doubles
 the value.  The function returns the result as a new monad.
 
-The nice thing about this is that we can eaily chain function.  Let's write
+The nice thing about this is that we can eaily chain functions.  Let's write
 another function:
 
 ```coffee
@@ -98,8 +98,19 @@ another function:
 So we can now do things like:
 
 ```
-expect(new Monad(42).addFive().double().value).toEqual(94)
-expect(new Monad(42).double().addFive().value).toEqual(89)
+expect(
+  new Monad(42)
+    .addFive()
+    .double()
+    .value
+).toEqual(94)
+
+expect(
+  new Monad(42)
+    .double()
+    .addFive()
+    .value
+).toEqual(89)
 ```
 
 ### Our complete Identity Monad
@@ -165,19 +176,24 @@ Basically we are saying that we can invert values that are
 not zero, but that 1 / 0 is undefined.  So we can safely do:
 
 ```coffee
-expect(new MaybeMonad(42).invert()
-                         .double()
-                         .addFive()
-                         .value).toEqual((1/42)*2 + 5)
+expect(
+  new MaybeMonad(42)
+    .invert()
+    .double()
+    .addFive()
+    .value
+).toEqual((1/42)*2 + 5)
 ```
 
 This is unsurprising, but we can also safely do:
 
 ```coffee
-expect(new MaybeMonad(0).invert()
-                        .double()
-                        .addFive()
-                        .value).toBeUndefined()
+expect(new MaybeMonad(0)
+  .invert()  // Wait!  This will give an undefined value!
+  .double()
+  .addFive()
+  .value
+).toBeUndefined()
 ```
 
 Even though the the invert operation is undefined, we don't have
