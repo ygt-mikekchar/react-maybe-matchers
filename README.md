@@ -73,17 +73,17 @@ pass a *matcher function*.
 ```
 
 `toBeAComponent` will run `matcherFn` passing it a
-[ComponentQuery object](src/ComponentQuery.litcoffee)
+[ComponentQuery object](src/ComponentQuery.litcoffee#componentquery)
 
 #### Component Query
 
-[ComponentQuery](src/ComponentQuery.litcoffee) allows you to
+[ComponentQuery](src/ComponentQuery.litcoffee#componentquery) allows you to
 search for a specific component.  Currently implemented:
 
   - **[tags(tagname)](src/ComponentQuery.litcoffee#testing-for-dom-tags)**:
     Search for a specific HTML tag.
 
-A `ComponentQuery` will return a [ComponentFilter](src/ComponentFilter.litcoffee)
+A `ComponentQuery` will return a [ComponentFilter](src/ComponentFilter.litcoffee#componentfilter)
 to allow you to further refine your search. If the query failed (there were
 no matching components), then the resultant `ComponentFilter` will not
 match.
@@ -96,7 +96,6 @@ does nothing.  This allows you to write an expectation like
     it.contains.tags("h1").result()
 ```
 
-
 ## License
 
 react-maybe-matchers is distributed under the [MIT licence](./LICENSE).
@@ -108,7 +107,7 @@ This project is written in
 [Literate programming](https://en.wikipedia.org/wiki/Literate_programming)
 (LP) is a style of programming introduced by Donald Knuth and famously
 used in the TeX text processing system.  You can
-[browse the source code](src/ReactMatchers.litcoffee) for this project.
+[browse the source code](src/ReactMatchers.litcoffee#react-matchers) for this project.
 
 ## Under Development
 
