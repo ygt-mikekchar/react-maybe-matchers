@@ -78,7 +78,7 @@ pass a *matcher function*.
 #### Component Query
 
 [ComponentQuery](src/ComponentQuery.litcoffee#componentquery) allows you to
-search for a specific component.  Currently implemented:
+search for component a set of components that matches some criteria.  Currently implemented:
 
   - **[tags(tagname)](src/ComponentQuery.litcoffee#testing-for-dom-tags)**:
     Search for a specific HTML tag.
@@ -98,7 +98,7 @@ does nothing.  This allows you to write an expectation like
 
 #### Component Filter
 
-[ComponentFilter](src/ComponentQuery.litcoffee#componentfilter) allows you to
+[ComponentFilter](src/ComponentFilter.litcoffee#componentfilter) allows you to
 filter a collection of components.  Currently implemented:
 
   - **[cssClass(cssClass)](src/ComponentFilter.litcoffee#filtering-nodes-by-css-class)**:
