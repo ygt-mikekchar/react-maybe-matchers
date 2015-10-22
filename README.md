@@ -20,7 +20,18 @@ with react-maybe-matchers.
 
 **Note:** text() is not implemented yet.
 
-### Dependencies
+## Literate Source Code
+
+This project is written in
+[literate Coffeescript](http://coffeescript.org/#literate).
+[Literate programming](https://en.wikipedia.org/wiki/Literate_programming)
+(LP) is a style of programming introduced by Donald Knuth and famously
+used in the TeX text processing system.
+
+You can
+[browse the source code](src/ReactMatchers.litcoffee#react-maybe-matchers) for this project.
+
+## Dependencies
 
 react-maybe-matchers is currently built against Jasmine 2.3.2 and React 0.13.3.
 Other versions may work, but have not been tested.  The React version is
@@ -29,20 +40,20 @@ this is unlikely the case for Jasmine as they have changed the way matchers
 work in some versions of the library.  A more complete compatibility list will
 be made soon.
 
-### Installation
+## Installation
 
 We have not yet added react-maybe-matchers to NPM, but you can still install it.
 If you are using NPM, you can install with the following
 entry in the devDependencies section of your `package.json` file:
 
 ```
-"react-calendar-pane": "git://github.com/ygt-mikekchar/react-maybe-matchers.git#master",
+"react-maybe-matchers": "git://github.com/ygt-mikekchar/react-maybe-matchers.git#master",
 ```
 
 If you wish to use the code directly (for example in a submodule in your project),
 simply require `lib/ReactMaybeMatchers.js`.
 
-### Usage
+## Usage
 
 To use custom matchers in Jasmine, you have to do a little bit of set up.  Here
 is the typical way to set it up (in Coffeescript):
@@ -62,7 +73,7 @@ to the addons version of React (so that the matchers can make use of
 the React test utilities).
 
 
-### API
+## API
 
 There is only one one top level matcher.  It is called `toBeAComponent`.
 To use it, you simply make an expectation on a React component and
@@ -75,7 +86,7 @@ pass a *matcher function*.
 `toBeAComponent` will run `matcherFn` passing it a
 [ComponentQuery object](src/ComponentQuery.litcoffee#componentquery)
 
-#### Component Query
+### Component Query
 
 [ComponentQuery](src/ComponentQuery.litcoffee#componentquery) allows you to
 search for component a set of components that matches some criteria.  Currently implemented:
@@ -99,7 +110,7 @@ This allows you to write an expectation like:
     it.contains.tags("h1").result()
 ```
 
-#### Component Filter
+### Component Filter
 
 [ComponentFilter](src/ComponentFilter.litcoffee#componentfilter) allows you to
 filter a collection of components.  Currently implemented:
@@ -116,7 +127,7 @@ For fluent use of English, `ComponentFilter` defines:
   - **[time](src/ComponentFilter.litcoffee#english-helpers)**
   - **[times](src/ComponentFilter.litcoffee#english-helpers)**
 
-#### Difference between ComponentQuery and ComponentFilter
+### Difference between ComponentQuery and ComponentFilter
 
 Keep in mind that `ComponentQuery` drills down into the tree and finds a collection
 of components.  `ComponentFilter` works on that collection of components and does
@@ -125,15 +136,6 @@ not drill down further.
 ## License
 
 react-maybe-matchers is distributed under the [MIT licence](./LICENSE).
-
-## Literate Source Code
-
-This project is written in
-[literate Coffeescript](http://coffeescript.org/#literate).
-[Literate programming](https://en.wikipedia.org/wiki/Literate_programming)
-(LP) is a style of programming introduced by Donald Knuth and famously
-used in the TeX text processing system.  You can
-[browse the source code](src/ReactMatchers.litcoffee#react-matchers) for this project.
 
 ## Tests
 

@@ -1,4 +1,4 @@
-# React Matchers
+# React Maybe Matchers
 
 Tests using the React test utilities are both difficult to read and inconvenient
 to type.  As much as possible, I think it is best to write Jasmine matchers
