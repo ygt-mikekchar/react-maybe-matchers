@@ -188,11 +188,12 @@ expect(
 This is unsurprising, but we can also safely do:
 
 ```coffee
-expect(new MaybeMonad(0)
-  .invert()  // Wait!  This will give an undefined value!
-  .double()
-  .addFive()
-  .value
+expect(
+  new MaybeMonad(0)
+    .invert()  // Wait!  This will give an undefined value!
+    .double()
+    .addFive()
+    .value
 ).toBeUndefined()
 ```
 
