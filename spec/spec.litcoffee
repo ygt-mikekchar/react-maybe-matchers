@@ -6,7 +6,7 @@ Here is a failing spec
 
     describe "react maybe matchers", ->
       beforeEach ->
-        new ReactMaybeMatchers(ReactTestUtils).addTo(this)
+        new ReactMaybeMatchers(ReactTestUtils).addTo(jasmine)
 
       it "should fail", ->
         expect(false).toEqual(true)
