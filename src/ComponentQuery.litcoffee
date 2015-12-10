@@ -20,13 +20,6 @@ such nodes.
 
 ## Requirements
 
-In order to make sure that the user can use whatever version of React
-they want, we assume that the variable `React` already points to
-the React package (FIXME: I wonder if there is a better way).  Just
-to save typing, we will use the following alias:
-
-    Utils = React.addons.TestUtils
-
 The [JasmineMonad](./JasmineMonad.litcoffee)is a "maybe" monad that
 allows us to chain our matcher functions in a fluent way.
 
@@ -41,7 +34,7 @@ that allows you to filter and match collections of React components.
 
     class ComponentQuery extends JasmineMonad
 
-      constructor: (@value, @util, @testers, @messages) ->
+      constructor: (@reactUtils, @value, @util, @testers, @messages) ->
         super(@value, @util, @testers, @messages)
 
 #### English Helpers
@@ -71,7 +64,7 @@ passes if there is at least one.
 
       tags: (tag) ->
         @bind (component) =>
-          nodes = Utils.scryRenderedDOMComponentsWithTag(component, tag)
+          nodes = @reactUtils.scryRenderedDOMComponentsWithTag(component, tag)
           messages = [
             "Expected to find DOM tag #{tag}, but it was not there."
             "Expected not to find DOM tag #{tag}, but there #{@was(nodes.length)}."

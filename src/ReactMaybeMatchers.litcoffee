@@ -61,13 +61,17 @@ of it, often generating a [ComponentFilter](./ComponentFilter.litcoffee).
 We actually only require one main method in our matchers interface because
 all of our matchers are actually implemented as methods on our monads.
 
-    ReactMatchers =
+    class ReactMaybeMatchers
+      constructor: (@reactUtils) ->
+
+      addTo: (jasmine) ->
+        jasmine.addMatchers(this)
 
       toBeAComponent: (util, testers) ->
-        compare: (component, func) ->
-          filter = new ComponentQuery(component, util, testers)
+        compare: (component, func) =>
+          filter = new ComponentQuery(@reactUtils, component, util, testers)
           func(filter)
 
 Export our matchers from this file.
 
-    module.exports = ReactMatchers
+    module.exports = ReactMaybeMatchers

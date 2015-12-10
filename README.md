@@ -33,7 +33,7 @@ You can
 
 ## Dependencies
 
-react-maybe-matchers is currently built against Jasmine 2.3.2 and React 0.13.3.
+react-maybe-matchers is currently built against Jasmine 2.3.2 and React 0.14.3.
 Other versions may work, but have not been tested.  The React version is
 probably quite flexible as long as you have one with the test utils.  Unfortunately
 this is unlikely the case for Jasmine as they have changed the way matchers
@@ -62,7 +62,7 @@ is the typical way to set it up (in Coffeescript):
 React = require("react/addons")
 ReactMaybeMatchers = require("react-maybe-matchers")
 
-describe "some wonderfule thing", ->
+describe "some wonderful thing", ->
   beforeEach ->
     @addMatchers(ReactMaybeMatchers)
 

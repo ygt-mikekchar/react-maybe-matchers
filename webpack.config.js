@@ -2,7 +2,10 @@ path = require("path")
 
 module.exports = {
   entry: {
-    ReactMaybeMatchers: path.join(__dirname, "/src/ReactMaybeMatchers.litcoffee"),
+    // ReactMaybeMatchers.litcoffee is in an array to work around the problem
+    // that Webpack refuses to allow something to require a file that is an
+    // entry point
+    ReactMaybeMatchers: [path.join(__dirname, "/src/ReactMaybeMatchers.litcoffee")],
     spec: path.join(__dirname, "/spec/spec.litcoffee"),
   },
   output: {
