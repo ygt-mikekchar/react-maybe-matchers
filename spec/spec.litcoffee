@@ -1,4 +1,4 @@
-Here is a failing spec
+Here is a spec
 
     React = require("react")
     ReactTestUtils = require('react-addons-test-utils')
@@ -17,7 +17,12 @@ Here is a failing spec
           <CommentBox />
         )
 
-      it "should be a component", ->
-        expect(@subject).toBeAComponent (it) ->
-          it.contains.tags("div")
-            .result()
+      it "should find contained elements", ->
+        expect(@subject).toBeAComponent (which) ->
+          which.contains.tags("div")
+               .result()
+
+      it "should not find elements that don't exist", ->
+        expect(@subject).not.toBeAComponent (which) ->
+          which.contains.tags("a")
+               .result()
