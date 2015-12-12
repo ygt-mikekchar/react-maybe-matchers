@@ -67,7 +67,10 @@ all of our matchers are actually implemented as methods on our monads.
       addTo: (jasmine) ->
         jasmine.addMatchers(this)
 
-      toBeAComponent: (util, testers) ->
+The matcher gets called with a different `this` pointer, so we need to use
+a fat arrow here.
+
+      toBeAComponent: (util, testers) =>
         compare: (component, func) =>
           filter = new ComponentQuery(@reactUtils, component, util, testers)
           func(filter)

@@ -45,6 +45,9 @@ It is nice to have use this word to make the expectation read more easily.
 
 #### Unit method for ComponentFilter
 
+      return: (value, messages) ->
+        new @constructor(@reactUtils, value, @util, @testers, messages)
+
 Most of the methods on `ComponentQuery` will actually want to
 return a ComponentFilter so the user can filter the collection of returned 
 nodes.  If we were using a language with strong typing the compiler
