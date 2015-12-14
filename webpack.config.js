@@ -11,7 +11,8 @@ module.exports = {
   output: {
     path: path.join(__dirname, "/lib"),
     filename: "[name].js",
-    libraryTarget: "commonjs2",
+    library: "[name]",
+    libraryTarget: "umd",
   },
   module: {
     loaders: [
