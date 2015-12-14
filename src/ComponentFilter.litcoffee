@@ -81,8 +81,8 @@ Otherwise you will have silly looking code that looks like:
             matched = []
 
           messages = [
-            "Expected to find DOM node with class #{cssClass}, but it was not there."
-            "Expected not to find DOM node with class #{cssClass}, but there #{@was(matched.length)}."
+            "Expected to find component with className #{cssClass}, but it was not there."
+            "Expected not to find component with className #{cssClass}, but there #{@was(matched.length)}."
           ]
 
           if matched.length > 0

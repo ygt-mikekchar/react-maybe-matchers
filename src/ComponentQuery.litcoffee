@@ -30,6 +30,11 @@ that allows you to filter and match collections of React components.
 
     ComponentFilter = require("./ComponentFilter.litcoffee")
 
+The [DomComponentFilter](./DomComponentFilter.litcoffee) is a JasmineMonad
+that allows you to filter and match collections of DOM components.
+
+    DomComponentFilter = require("./DomComponentFilter.litcoffee")
+
 ## A monad for making queries of single Components
 
     class ComponentQuery extends JasmineMonad
@@ -43,7 +48,7 @@ It is nice to have use this word to make the expectation read more easily.
 
         @contains = this
 
-#### Unit method for ComponentFilter
+#### Unit method for ComponentQuery
 
       return: (value, messages) ->
         new @constructor(@reactUtils, value, @util, @testers, messages)
@@ -57,6 +62,13 @@ give it a helping hand by making a different `return` method.
 
       returnMany: (nodes, messages) ->
         new ComponentFilter(nodes, @util, @testers, messages)
+
+In the past DOM nodes in the React tree were treated similarly to
+React components.  This will change in 0.15, so we need to make
+sure to create the correct filter object.
+
+      returnManyDom: (nodes, messages) ->
+        new DomComponentFilter(nodes, @util, @testers, messages)
 
 #### Testing for DOM tags
 
@@ -72,7 +84,7 @@ passes if there is at least one.
             "Expected not to find DOM tag #{tag}, but there #{@was(nodes.length)}."
           ]
           if nodes.length > 0
-            @returnMany(nodes, messages)
+            @returnManyDom(nodes, messages)
           else
             @return(null, messages)
 
