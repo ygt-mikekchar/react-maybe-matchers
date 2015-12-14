@@ -31,6 +31,13 @@ Here is a spec
               which.contains.tags("a")
                    .result()
 
+          it "should find text in elements", ->
+            expect(@subject).toBeAComponent (which) ->
+              which.contains.tags("div")
+                   .with.cssClass("commentBox")
+                   .text("Hello, world")
+                   .result()
+
         describe "returning multiple nodes", ->
           CommentBox = React.createClass
             render: ->
@@ -87,7 +94,7 @@ Here is a spec
               which.contains.type(CommentBox)
                    .result()
 
-          it "should not find elements that don't exist", ->
+          it "should not find components that don't exist", ->
             expect(@subject).not.toBeAComponent (which) ->
               which.contains.type(NotUsed)
                    .result()

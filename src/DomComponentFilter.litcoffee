@@ -22,7 +22,7 @@ that they have access to.
         @bind (nodes) =>
           match = (a, b) ->
             return false if !b?
-            b.indexOf(a) != -1
+            b == a
 
           if nodes?.length
             matched = (node for node in nodes when match(cssClass, node.className))
@@ -32,6 +32,29 @@ that they have access to.
           messages = [
             "Expected to find DOM node with class #{cssClass}, but it was not there."
             "Expected not to find DOM node with class #{cssClass}, but there #{@was(matched.length)}."
+          ]
+
+          if matched.length > 0
+            @return(matched, messages)
+          else
+            @return(null, messages)
+
+#### Filtering nodes containing text
+
+      text: (string) ->
+        @bind (nodes) =>
+          match = (a, b) ->
+            return false if !b?
+            b.indexOf(a) != -1
+
+          if nodes?.length
+            matched = (node for node in nodes when match(string, node.textContent))
+          else
+            matched = []
+
+          messages = [
+            "Expected to find DOM node containing text #{string}, but it was not there."
+            "Expected not to find DOM node containing text #{string}, but there #{@was(matched.length)}."
           ]
 
           if matched.length > 0
