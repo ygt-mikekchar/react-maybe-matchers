@@ -64,13 +64,34 @@ One of the most common kinds of tests is to determine whether or not
 a component contains a DOM "tag" (eg "h1", "div", etc). This matcher
 passes if there is at least one.
 
-
       tags: (tag) ->
         @bind (component) =>
           nodes = @reactUtils.scryRenderedDOMComponentsWithTag(component, tag)
           messages = [
             "Expected to find DOM tag #{tag}, but it was not there."
             "Expected not to find DOM tag #{tag}, but there #{@was(nodes.length)}."
+          ]
+          if nodes.length > 0
+            @returnMany(nodes, messages)
+          else
+            @return(null, messages)
+
+#### Testing for React component types
+
+Another common kind of test is to determine whether or not
+a component contains a React component of a certain type. This matcher
+passes if there is at least one.
+
+FIXME: It would be nice to print the name of the component that
+you want to find in the error messages, but it doesn't appear
+to be available.
+
+      type: (type) ->
+        @bind (component) =>
+          nodes = @reactUtils.scryRenderedComponentsWithType(component, type)
+          messages = [
+            "Expected to find a React component, but it was not there."
+            "Expected not to find a React component, but there #{@was(nodes.length)}."
           ]
           if nodes.length > 0
             @returnMany(nodes, messages)

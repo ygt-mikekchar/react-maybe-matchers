@@ -59,3 +59,36 @@ Here is a spec
               which.contains.tags("span")
                    .exactly(1).time
                    .result()
+
+        describe "returning react components", ->
+          CommentBox = React.createClass
+            render: ->
+              <div className="commentBox">
+                Hello, world!  I am a comment box.
+              </div>
+
+          CommentFrame = React.createClass
+            render: ->
+              <div>
+                <CommentBox />
+              </div>
+
+          NotUsed = React.createClass
+            render: ->
+              <div></div>
+
+          beforeEach ->
+            @subject = ReactTestUtils.renderIntoDocument(
+              <CommentFrame />
+            )
+
+          it "should find contained components", ->
+            expect(@subject).toBeAComponent (which) ->
+              which.contains.type(CommentBox)
+                   .result()
+
+          it "should not find elements that don't exist", ->
+            expect(@subject).not.toBeAComponent (which) ->
+              which.contains.type(NotUsed)
+                   .result()
+
