@@ -31,6 +31,11 @@ Here is a spec
               which.contains.tags("a")
                    .result()
 
+          it "should find elements with css class directly", ->
+            expect(@subject).toBeAComponent (which) ->
+              which.contains.cssClass("commentBox")
+                   .result()
+
           it "should find text in elements", ->
             expect(@subject).toBeAComponent (which) ->
               which.contains.tags("div")

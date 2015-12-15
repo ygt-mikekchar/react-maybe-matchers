@@ -88,6 +88,23 @@ passes if there is at least one.
           else
             @return(null, messages)
 
+#### Testing directly for DOM with class
+
+Sometimes you don't care what kind of tag the DOM nodes have.  You just
+want ensure that there is *something* with the required class.
+
+      cssClass: (cssClass) ->
+        @bind (component) =>
+          nodes = @reactUtils.scryRenderedDOMComponentsWithClass(component, cssClass)
+          messages = [
+            "Expected to find DOM node with class #{cssClass}, but it was not there."
+            "Expected not to find DOM node with class #{cssClass}, but there #{@was(nodes.length)}."
+          ]
+          if nodes.length > 0
+            @returnManyDom(nodes, messages)
+          else
+            @return(null, messages)
+
 #### Testing for React component types
 
 Another common kind of test is to determine whether or not
