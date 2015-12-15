@@ -31,6 +31,12 @@ Here is a spec
               which.contains.tags("a")
                    .result()
 
+          it "properly chains failing expressions", ->
+            expect(@subject).not.toBeAComponent (which) ->
+              which.contains.tags("a")
+                   .with.cssClass("pooh-bear")
+                   .result()
+
           it "should find elements with css class directly", ->
             expect(@subject).toBeAComponent (which) ->
               which.contains.cssClass("commentBox")

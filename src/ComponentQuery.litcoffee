@@ -50,9 +50,6 @@ It is nice to have use this word to make the expectation read more easily.
 
 #### Unit method for ComponentQuery
 
-      return: (value, messages) ->
-        new @constructor(@reactUtils, value, @util, @testers, messages)
-
 Most of the methods on `ComponentQuery` will actually want to
 return a ComponentFilter so the user can filter the collection of returned 
 nodes.  If we were using a language with strong typing the compiler
@@ -60,14 +57,14 @@ would be able to construct the correct the correct Monad based
 on the types.  However, we are using Coffeescript, so we have to
 give it a helping hand by making a different `return` method.
 
-      returnMany: (nodes, messages) ->
+      return: (nodes, messages) ->
         new ComponentFilter(nodes, @util, @testers, messages)
 
 In the past DOM nodes in the React tree were treated similarly to
 React components.  This will change in 0.15, so we need to make
 sure to create the correct filter object.
 
-      returnManyDom: (nodes, messages) ->
+      returnDom: (nodes, messages) ->
         new DomComponentFilter(nodes, @util, @testers, messages)
 
 #### Testing for DOM tags
@@ -84,9 +81,9 @@ passes if there is at least one.
             "Expected not to find DOM tag #{tag}, but there #{@was(nodes.length)}."
           ]
           if nodes.length > 0
-            @returnManyDom(nodes, messages)
+            @returnDom(nodes, messages)
           else
-            @return(null, messages)
+            @returnDom(null, messages)
 
 #### Testing directly for DOM with class
 
@@ -101,9 +98,9 @@ want ensure that there is *something* with the required class.
             "Expected not to find DOM node with class #{cssClass}, but there #{@was(nodes.length)}."
           ]
           if nodes.length > 0
-            @returnManyDom(nodes, messages)
+            @returnDom(nodes, messages)
           else
-            @return(null, messages)
+            @returnDom(null, messages)
 
 #### Testing for React component types
 
@@ -123,7 +120,7 @@ to be available.
             "Expected not to find a React component, but there #{@was(nodes.length)}."
           ]
           if nodes.length > 0
-            @returnMany(nodes, messages)
+            @return(nodes, messages)
           else
             @return(null, messages)
 
