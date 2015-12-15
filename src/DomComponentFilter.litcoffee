@@ -19,10 +19,12 @@ that they have access to.
 #### Filtering nodes by CSS class
 
       cssClass: (cssClass) ->
+        # FIXME: This matches substrings.  We should split on
+        # spaces and match if any are equal.
         @bind (nodes) =>
           match = (a, b) ->
             return false if !b?
-            b == a
+            b.indexOf(a) != -1
 
           if nodes?.length
             matched = (node for node in nodes when match(cssClass, node.className))
