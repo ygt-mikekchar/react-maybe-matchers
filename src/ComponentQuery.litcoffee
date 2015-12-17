@@ -20,7 +20,7 @@ such nodes.
 
 ## Requirements
 
-The [JasmineMonad](./JasmineMonad.litcoffee)is a "maybe" monad that
+The [JasmineMonad](./JasmineMonad.litcoffee) is a "maybe" monad that
 allows us to chain our matcher functions in a fluent way.
 
     JasmineMonad = require("./JasmineMonad.litcoffee")

@@ -87,16 +87,16 @@ search for component or DOM node rendered by a React component.  Currently imple
 
   - **[tags(tagname)](src/ComponentQuery.litcoffee#testing-for-dom-tags)**:
     Search for a DOM node with a specific HTML tag.  Returns a
-    [DomComponentFilter](src/DomComponentFilter#domcomponentfilter).
+    [DomComponentFilter](src/DomComponentFilter.litcoffee#domcomponentfilter).
   - **[cssClass(className)](src/ComponentQuery.litcoffee#testing-directly-for-dom-with-class)**:
     Search for any DOM node with a given CSS class name. Returns a
-    [DomComponentFilter](src/DomComponentFilter#domcomponentfilter).
+    [DomComponentFilter](src/DomComponentFilter.litcoffee#domcomponentfilter).
   - **[type(componentClass)](src/ComponentQuery.litcoffee#testing-for-react-component-types)**:
     Search for React components of a given class. Returns a
-    [ComponentFilter](src/ComponentFilter#componentfilter).
+    [ComponentFilter](src/ComponentFilter.litcoffee#componentfilter).
 
 A `ComponentQuery` will return a [ComponentFilter](src/ComponentFilter.litcoffee#componentfilter)
-or  [DomComponentFilter](src/DomComponentFilter.litcoffee#componentfilter)
+or  [DomComponentFilter](src/DomComponentFilter.litcoffee#domcomponentfilter)
 to allow you to further refine your search.
 
 For fluent use of English, `ComponentQuery` defines:
@@ -126,7 +126,7 @@ the above but also implements:
 
   - **[cssClass(cssClass)](src/DomComponentFilter.litcoffee#filtering-nodes-by-css-class)**:
     Filters all the contained nodes for those with a specific css class.
-  - **[text(string)](src/ComponentFilter.litcoffee#filtering-nodes-by-containing-text)**:
+  - **[text(string)](src/DomComponentFilter.litcoffee#filtering-nodes-containing-text)**:
     Filters all the contained nodes for those which contain a string.
 
 For fluent use of English, `ComponentFilter` and `DomComponentFilter` define:
@@ -139,8 +139,8 @@ For fluent use of English, `ComponentFilter` and `DomComponentFilter` define:
 ### Difference between ComponentQuery and ComponentFilter
 
 Keep in mind that `ComponentQuery` drills down into the tree and finds a collection
-of components.  `ComponentFilter` works on that collection of components and does
-not drill down further.
+of components.  `ComponentFilter` works on that collection of components or DOM
+nodes and does not drill down further.
 
 ## License
 

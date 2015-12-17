@@ -18,18 +18,16 @@ about monads, but their use is very straight forward.
 These matchers will allow us to write tests like:
 
 ```coffee
-  expect(component).toBeAComponent (it) ->
-    it.contains.tags("div")
-      .with.cssClass("my-class")
-      .and.text("contents")
-      .exactly(2).times
-      .result()
+  expect(component).toBeAComponent (which) ->
+    which.contains.tags("div")
+         .with.cssClass("my-class")
+         .and.text("contents")
+         .exactly(2).times
+         .result()
 ```
 
-**Note:** text() is not implemented yet.
-
 In the example above, `toBeAComponent` accepts a callback, which it will call,
-funishing a monad called `it`.  We can then chain a series of tests.
+funishing a monad called `which`.  We can then chain a series of tests.
 
 The chain in this example means that I am expecting my component to contain a DOM `div`
 with the class `my-css-class`.  This `div` should contain the text, `contents`.
@@ -43,11 +41,6 @@ everything until it gets to the `result`.  Its a useful technique when
 you dont want to constantly check return values for errors.
 
 ## Requirements
-
-The matchers need to pluralize strings, so we need to load
-[a string pluralizer method](pluralize.litcoffee)
-
-    require("./pluralize.litcoffee")
 
 The [ComponentQuery](./ComponentQuery.litcoffee) is a
 [JasmineMonad](./JasmineMonad.litcoffee)
