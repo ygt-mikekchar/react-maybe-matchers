@@ -10,15 +10,13 @@ This is an example of the kinds of expectations you can write
 with react-maybe-matchers.
 
 ```coffee
-  expect(component).toBeAComponent (it) ->
-    it.contains.tags("div")
-      .with.cssClass("my-class")
-      .and.text("contents")
-      .exactly(2).times
-      .result()
+  expect(component).toBeAComponent (which) ->
+    which.contains.tags("div")
+         .with.cssClass("my-class")
+         .and.text("contents")
+         .exactly(2).times
+         .result()
 ```
-
-**Note:** text() is not implemented yet.
 
 ## Literate Source Code
 
@@ -29,7 +27,8 @@ This project is written in
 used in the TeX text processing system.
 
 You can
-[browse the source code](src/ReactMaybeMatchers.litcoffee#react-maybe-matchers-for-jasmine) for this project.
+[browse the source code](src/ReactMaybeMatchers.litcoffee#react-maybe-matchers-for-jasmine)
+for this project.
 
 ## Dependencies
 
@@ -59,19 +58,14 @@ To use custom matchers in Jasmine, you have to do a little bit of set up.  Here
 is the typical way to set it up (in Coffeescript):
 
 ```coffee
-React = require("react/addons")
-ReactMaybeMatchers = require("react-maybe-matchers")
+React = require("react")
+ReactTestUtils = require('react-addons-test-utils')
+ReactMaybeMatchers = require("../src/ReactMaybeMatchers.litcoffee")
 
 describe "some wonderful thing", ->
   beforeEach ->
-    @addMatchers(ReactMaybeMatchers)
-
+    new ReactMaybeMatchers(ReactTestUtils).addTo(jasmine)
 ```
-
-Note that you *must* make a variable called `React` and it *must* point
-to the addons version of React (so that the matchers can make use of
-the React test utilities).
-
 
 ## API
 
@@ -89,15 +83,21 @@ pass a *matcher function*.
 ### Component Query
 
 [ComponentQuery](src/ComponentQuery.litcoffee#componentquery) allows you to
-search for component a set of components that matches some criteria.  Currently implemented:
+search for component or DOM node rendered by a React component.  Currently implemented:
 
   - **[tags(tagname)](src/ComponentQuery.litcoffee#testing-for-dom-tags)**:
-    Search for a specific HTML tag.
+    Search for a DOM node with a specific HTML tag.  Returns a
+    [DomComponentFilter](src/DomComponentFilter#domcomponentfilter).
+  - **[cssClass(className)](src/ComponentQuery.litcoffee#testing-directly-for-dom-with-class)**:
+    Search for any DOM node with a given CSS class name. Returns a
+    [DomComponentFilter](src/DomComponentFilter#domcomponentfilter).
+  - **[type(componentClass)](src/ComponentQuery.litcoffee#testing-for-react-component-types)**:
+    Search for React components of a given class. Returns a
+    [ComponentFilter](src/ComponentFilter#componentfilter).
 
 A `ComponentQuery` will return a [ComponentFilter](src/ComponentFilter.litcoffee#componentfilter)
-to allow you to further refine your search. If the query failed (there were
-no matching components), then the resultant `ComponentFilter` will not
-match.
+or  [DomComponentFilter](src/DomComponentFilter.litcoffee#componentfilter)
+to allow you to further refine your search.
 
 For fluent use of English, `ComponentQuery` defines:
 
@@ -106,21 +106,30 @@ For fluent use of English, `ComponentQuery` defines:
 This allows you to write an expectation like:
 
 ```coffee
-  expect(component).toBeAComponent (it) ->
-    it.contains.tags("h1").result()
+  expect(component).toBeAComponent (which) ->
+    which.contains.tags("h1")
+         .result()
 ```
 
 ### Component Filter
 
 [ComponentFilter](src/ComponentFilter.litcoffee#componentfilter) allows you to
-filter a collection of components.  Currently implemented:
+filter a collection of React components.  Currently implemented:
 
   - **[cssClass(cssClass)](src/ComponentFilter.litcoffee#filtering-nodes-by-css-class)**:
     Filters all the contained nodes for those with a specific css class.
   - **[exactly(num)](src/ComponentFilter.litcoffee#enforcing-the-number-of-nodes)**:
     Matches if the number of nodes is num.  Does not match otherwise
 
-For fluent use of English, `ComponentFilter` defines:
+[DomComponentFilter](src/DomComponentFilter.litcoffee#domcomponentfilter) includes
+the above but also implements:
+
+  - **[cssClass(cssClass)](src/DomComponentFilter.litcoffee#filtering-nodes-by-css-class)**:
+    Filters all the contained nodes for those with a specific css class.
+  - **[text(string)](src/ComponentFilter.litcoffee#filtering-nodes-by-containing-text)**:
+    Filters all the contained nodes for those which contain a string.
+
+For fluent use of English, `ComponentFilter` and `DomComponentFilter` define:
 
   - **[with](src/ComponentFilter.litcoffee#english-helpers)**
   - **[and](src/ComponentFilter.litcoffee#english-helpers)**

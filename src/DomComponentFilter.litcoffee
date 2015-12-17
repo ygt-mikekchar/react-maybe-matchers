@@ -20,7 +20,8 @@ that they have access to.
 
       cssClass: (cssClass) ->
         # FIXME: This matches substrings.  We should split on
-        # spaces and match if any are equal.
+        # spaces and match if any are equal.  However, if we do
+        # that we need a way to match collections of cssClasses.
         @bind (nodes) =>
           match = (a, b) ->
             return false if !b?

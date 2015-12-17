@@ -49,26 +49,8 @@ allow us to use a more fluent English expression.
 
 #### Filtering nodes by CSS class
 
-As this is the first monadic function we have seen, I will describe it
-in a bit more detail.  Notice that the first line is a call to `@bind`.
-You pass it a callback which accepts a list of components.  `@bind` will run
-the function and pass `@value` in as the `component`.  You might be
-wondering, "why dont we just use @value directly -- it is available
-to us".  The reason we dont is because `@bind` is implementing our
-Maybe functionality.  If we neglect to call it, we will lose that
-functionality.  Although it is tempting to go around the structure
-of the monad and treat it as any other object, it is better to follow
-the interface.
-
-Secondly, you will notice that we call `@return` at the end.  This
-builds a new Monad, wrapping the new component list and messages.  Note that
-we return `null` in the case that our matcher fails.  This will stop
-all subsequently chained matchers from running.
-
-Be careful to only have one exit point in your monadic functions.
-Otherwise you will have silly looking code that looks like:
-`return @return(component, messages)`.
-
+      # TODO: Is this necessary?  Does anyone add className
+      # to a component?  What does it mean?
       cssClass: (cssClass) ->
         @bind (nodes) =>
           match = (a, b) ->

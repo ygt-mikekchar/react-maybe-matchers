@@ -44,9 +44,9 @@ Here is a spec
 
           it "should find text in elements", ->
             expect(@subject).toBeAComponent (which) ->
-              which.contains.tags("div")
-                   .with.cssClass("commentBox")
-                   .text("Hello, world")
+              which.contains.tags "div"
+                   .with.cssClass "commentBox"
+                   .text "Hello, world"
                    .result()
 
         describe "returning multiple nodes", ->
