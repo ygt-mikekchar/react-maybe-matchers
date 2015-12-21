@@ -148,9 +148,9 @@ react-maybe-matchers is distributed under the [MIT licence](./LICENSE).
 
 ## Tests
 
-You can
-[run the tests](http://ygt-mikekchar.github.io/react-maybe-matchers/spec/index.html)
-in your browser.
+The [tests](./spec/spec.litcoffee)
+can be
+[run in your browser](http://ygt-mikekchar.github.io/react-maybe-matchers/spec/index.html).
 
 ## Under Development
 
