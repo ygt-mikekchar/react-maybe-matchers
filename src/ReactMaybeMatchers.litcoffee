@@ -43,11 +43,11 @@ you dont want to constantly check return values for errors.
 ### Requirements
 
 The main matcher interface will return a
-[ComponentQuery](./ComponentQuery.litcoffee).  This is a
-[JasmineMonad](./JasmineMonad.litcoffee)
+[ComponentQuery](./ComponentQuery.litcoffee#componentquery).  This is a
+[JasmineMonad](./JasmineMonad.litcoffee#a-monad-for-jasmine-tests)
 that allows you to take a single React component and make queries
-of it, often generating a [ComponentFilter](./ComponentFilter.litcoffee) 
-or [DomComponentFilter](./DomComponentFilter.litcoffee)
+of it, often generating a [ComponentFilter](./ComponentFilter.litcoffee#componentfilter) 
+or [DomComponentFilter](./DomComponentFilter.litcoffee#domcomponentfilter)
 
     ComponentQuery = require("./ComponentQuery.litcoffee")
 
