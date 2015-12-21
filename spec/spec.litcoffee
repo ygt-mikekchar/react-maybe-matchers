@@ -10,10 +10,10 @@ any unit tests (high up on my priority list).
 
 ## Integration tests
 
-In the [integration tests](./spec/integration_spec.litcoffee) you
+In the [integration tests](./spec/integration_spec.litcoffee#integration-tests) you
 will find examples of how to use the matchers.
 
-    require("./integration_spec.litcoffee#integration-tests")
+    require("./integration_spec.litcoffee")
 
 ## String#pluralize unit tests
 
