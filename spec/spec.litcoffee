@@ -12,13 +12,13 @@ any unit tests (high up on my priority list).
 
 ## Integration tests
 
-In the [integration tests](./spec/integration_spec.litcoffee#integration-tests) you
+In the [integration tests](./integration_spec.litcoffee#integration-tests) you
 will find examples of how to use the matchers.
 
     require("./integration_spec.litcoffee")
 
 ## String#pluralize unit tests
 
-Some [examples of pluralizing strings]("./pluralize_spec.litcoffee#unit-tests-for-stringpluralize")
+Some [examples of pluralizing strings](./pluralize_spec.litcoffee#unit-tests-for-stringpluralize)
 
     require("./pluralize_spec.litcoffee")
