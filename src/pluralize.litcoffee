@@ -12,8 +12,7 @@ objects.  This is just a handy utility to help with that.
 "there #{'was'.pluralize(1, 'were')} one" # == "there was one"
 ```
 
-**TODO:** Write some tests ;-)
-
+[specs](./spec/pluralize_spec.litcoffee)
     String.prototype.pluralize = (num, plural) ->
       return this if num == 1
       if plural? then plural else "#{this}s"
