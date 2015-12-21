@@ -38,7 +38,7 @@ The Maybe monad is a special kind of monad that only processes when
 the data is valid.  In this case, if there are no `div` elements, then it
 wont bother trying to figure out the cssClass, etc.  It will ignore
 everything until it gets to the `result`.  Its a useful technique when
-you dont want to constantly check return values for errors.
+you don't want to constantly check return values for errors.
 
 ### Requirements
 

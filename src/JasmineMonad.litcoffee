@@ -60,7 +60,7 @@ true:
         else
           this
 
-We dont have any definitive way of determining if the previous
+We don't have any definitive way of determining if the previous
 matchers have passed, so we will rely on the matcher functions
 to return `null`/`undefined` when the matcher fails.
 
@@ -71,7 +71,7 @@ to return `null`/`undefined` when the matcher fails.
 
 Once we have run our chain of matchers and filters, we need some
 way of returning a result to Jasmine.  This should always be
-the last method called in the chain.  Notice that it doesnt
+the last method called in the chain.  Notice that it doesn't
 return a new monad, but rather the result object that Jasmine
 expects.
 
