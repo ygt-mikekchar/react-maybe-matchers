@@ -12,8 +12,7 @@ The matchers need to pluralize strings, so we need to load
 This is the base class for our matcher monads.  In general, a monad simply wraps
 a value and provides a way to run arbitrary functions using those
 wrapped values.  If you are not familiar with monads you can
-[read a small tutorial on maybe monads](./monad.md#what-is-a-monad).
-
+read [a small tutorial on maybe monads](./monad.md#what-is-a-monad).
 
     class JasmineMonad
 
