@@ -13,6 +13,7 @@ objects.  This is just a handy utility to help with that.
 ```
 
 [specs](./spec/pluralize_spec.litcoffee)
+
     String.prototype.pluralize = (num, plural) ->
       return this if num == 1
       if plural? then plural else "#{this}s"
