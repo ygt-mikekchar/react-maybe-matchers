@@ -17,4 +17,6 @@ will find examples of how to use the matchers.
 
 ## String#pluralize unit tests
 
+Some [examples of pluralizing strings]("./pluralize_spec.litcoffee")
+
     require("./pluralize_spec.litcoffee")
