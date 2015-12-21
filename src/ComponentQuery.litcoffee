@@ -1,6 +1,6 @@
 # ComponentQuery
 
-When we first start out, we are likely to have only a single
+When we first start out, we will want to query only a single
 component.  This monad is used for querying that component
 and getting a list of nodes that we will filter later.
  
@@ -12,26 +12,26 @@ componentQuery.contains
               .result()
 ```
 
-This will take a component in the componentFilter
-and generate a ComponentFilter with the DOM nodes
+This will take the React component used in the constructor
+of the ComponentQuery and generate a ComponentFilter with the DOM nodes
 that have the tag "div".  In this particular example,
-it will return a matching result if there are any
-such nodes.
+it will return a matching result if there are any such nodes.
 
-## Requirements
+### Requirements
 
-The [JasmineMonad](./JasmineMonad.litcoffee) is a "maybe" monad that
+The [JasmineMonad](./JasmineMonad.litcoffee#a-monad-for-jasmine-tests) is a "maybe" monad that
 allows us to chain our matcher functions in a fluent way.
 
     JasmineMonad = require("./JasmineMonad.litcoffee")
 
-The [ComponentFilter](./ComponentFilter.litcoffee) is a JasmineMonad
+The [ComponentFilter](./ComponentFilter.litcoffee#componentfilter) is a JasmineMonad
 that allows you to filter and match collections of React components.
 
     ComponentFilter = require("./ComponentFilter.litcoffee")
 
-The [DomComponentFilter](./DomComponentFilter.litcoffee) is a JasmineMonad
-that allows you to filter and match collections of DOM components.
+The [DomComponentFilter](./DomComponentFilter.litcoffee#domcomponentfilter)
+is a JasmineMonad that allows you to filter and match collections of DOM
+components.
 
     DomComponentFilter = require("./DomComponentFilter.litcoffee")
 
@@ -40,15 +40,16 @@ that allows you to filter and match collections of DOM components.
     class ComponentQuery extends JasmineMonad
 
       constructor: (@reactUtils, @value, @util, @testers, @messages) ->
+        # FIXME: pass reactutils along so that we have a consistent api
         super(@value, @util, @testers, @messages)
 
-#### English Helpers
+### English Helpers
 
 It is nice to have use this word to make the expectation read more easily.
 
         @contains = this
 
-#### Unit method for ComponentQuery
+### Unit method for ComponentQuery
 
 Most of the methods on `ComponentQuery` will actually want to
 return a ComponentFilter so the user can filter the collection of returned 
@@ -67,7 +68,7 @@ sure to create the correct filter object.
       returnDom: (nodes, messages) ->
         new DomComponentFilter(nodes, @util, @testers, messages)
 
-#### Testing for DOM tags
+### Testing for DOM tags
 
 One of the most common kinds of tests is to determine whether or not
 a component contains a DOM "tag" (eg "h1", "div", etc). This matcher
@@ -85,7 +86,7 @@ passes if there is at least one.
           else
             @returnDom(null, messages)
 
-#### Testing directly for DOM with class
+### Testing directly for DOM with class
 
 Sometimes you don't care what kind of tag the DOM nodes have.  You just
 want ensure that there is *something* with the required class.
@@ -102,7 +103,7 @@ want ensure that there is *something* with the required class.
           else
             @returnDom(null, messages)
 
-#### Testing for React component types
+### Testing for React component types
 
 Another common kind of test is to determine whether or not
 a component contains a React component of a certain type. This matcher
@@ -124,6 +125,6 @@ to be available.
           else
             @return(null, messages)
 
-Export our matchers from this file.
+### Exported Classes
 
     module.exports = ComponentQuery

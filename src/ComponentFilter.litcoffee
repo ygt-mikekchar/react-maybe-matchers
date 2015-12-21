@@ -18,15 +18,10 @@ if there are exactly 2 of them.
 
 ## Requirements
 
-The [JasmineMonad](./JasmineMonad.litcoffee) is a "maybe" monad that
+The [JasmineMonad](./JasmineMonad.litcoffee#a-monad-for-jasmine-tests) is a "maybe" monad that
 allows us to chain our matcher functions in a fluent way.
 
     JasmineMonad = require("./JasmineMonad.litcoffee")
-
-The matchers need to pluralize strings, so we need to load
-[a string pluralizer method](pluralize.litcoffee)
-
-    require("./pluralize.litcoffee")
 
 ### A monad for filtering collections of React components
 

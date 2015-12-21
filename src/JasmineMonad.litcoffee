@@ -3,7 +3,7 @@
 ## Requirements
 
 The matchers need to pluralize strings, so we need to load
-[a string pluralizer method](pluralize.litcoffee)
+[a string pluralizer method](pluralize.litcoffee#stringpluralize-method)
 
     require("./pluralize.litcoffee")
 
@@ -12,10 +12,11 @@ The matchers need to pluralize strings, so we need to load
 This is the base class for our matcher monads.  In general, a monad simply wraps
 a value and provides a way to run arbitrary functions using those
 wrapped values.  If you are not familiar with monads you can
-[read more](./monad.md).
-
+read [a small tutorial on maybe monads](./monad.md#what-is-a-monad).
 
     class JasmineMonad
+
+### Unit functions
 
 Our monad wraps a few things.
 
@@ -44,6 +45,8 @@ The `value` depends on the type of monad we are constructing.
 `JasmineMonad` is the base class and what we store in `value`
 depends on the concrete class.
 
+### Run other arbitrary functions
+
 Here is the `bind` function that runs functions working
 with the monad.  Because it is a Maybe monad, we only
 run the passed function if `passed` (whether or not all
@@ -56,16 +59,18 @@ true:
         else
           this
 
-We dont have any definitive way of determining if the previous
+We don't have any definitive way of determining if the previous
 matchers have passed, so we will rely on the matcher functions
-to return null when the matcher fails.
+to return `null`/`undefined` when the matcher fails.
 
       passed: () ->
         @value?
 
+### Returning the results to Jasmine
+
 Once we have run our chain of matchers and filters, we need some
 way of returning a result to Jasmine.  This should always be
-the last method called in the chain.  Notice that it doesnt
+the last method called in the chain.  Notice that it doesn't
 return a new monad, but rather the result object that Jasmine
 expects.
 
@@ -78,6 +83,8 @@ expects.
           else
             result.message = @messages[0]
         return result
+
+### English Helpers
 
 In constructing the messages it is often the case that you want to
 use the word "was/were" depending on the number of items.  This
@@ -105,6 +112,6 @@ For example:
       count: (num, singular, plural) ->
         "#{num} #{singular.pluralize(num, plural)}"
 
-## Export
+### Exported Classes
 
     module.exports = JasmineMonad

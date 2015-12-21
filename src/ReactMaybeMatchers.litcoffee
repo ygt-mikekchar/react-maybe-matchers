@@ -38,36 +38,58 @@ The Maybe monad is a special kind of monad that only processes when
 the data is valid.  In this case, if there are no `div` elements, then it
 wont bother trying to figure out the cssClass, etc.  It will ignore
 everything until it gets to the `result`.  Its a useful technique when
-you dont want to constantly check return values for errors.
+you don't want to constantly check return values for errors.
 
-## Requirements
+### Requirements
 
-The [ComponentQuery](./ComponentQuery.litcoffee) is a
-[JasmineMonad](./JasmineMonad.litcoffee)
+The main matcher interface will return a
+[ComponentQuery](./ComponentQuery.litcoffee#componentquery).  This is a
+[JasmineMonad](./JasmineMonad.litcoffee#a-monad-for-jasmine-tests)
 that allows you to take a single React component and make queries
-of it, often generating a [ComponentFilter](./ComponentFilter.litcoffee). 
+of it, often generating a [ComponentFilter](./ComponentFilter.litcoffee#componentfilter) 
+or [DomComponentFilter](./DomComponentFilter.litcoffee#domcomponentfilter)
 
     ComponentQuery = require("./ComponentQuery.litcoffee")
 
-### Main matcher interface
+### Using ReactMaybeMatchers
 
-We actually only require one main method in our matchers interface because
-all of our matchers are actually implemented as methods on our monads.
+The matchers need to use the React test utils in order to
+inspect the React/DOM tree for components.  `@reactUtils`
+here is the result of `require("react-addons-test-utils")`
 
     class ReactMaybeMatchers
       constructor: (@reactUtils) ->
 
+In order to use ReactMaybeMatchers, you have to add
+the matchers to the jasmine instance.
+
       addTo: (jasmine) ->
         jasmine.addMatchers(this)
 
-The matcher gets called with a different `this` pointer, so we need to use
-a fat arrow here.
+Here is the typical way to set up the matchers in a spec:
 
+```coffee
+React = require("react")
+ReactTestUtils = require('react-addons-test-utils')
+ReactMaybeMatchers = require("../src/ReactMaybeMatchers.litcoffee")
+
+describe "some wonderful thing", ->
+  beforeEach ->
+    new ReactMaybeMatchers(ReactTestUtils).addTo(jasmine)
+```
+
+### Main Matcher Interface
+
+We actually only require one main method in our matchers interface because
+all of our matchers are actually implemented as methods on our monads.
+
+      # The matcher gets called with a different `this` pointer,
+      # so we need to use a fat arrow here.
       toBeAComponent: (util, testers) =>
         compare: (component, func) =>
           filter = new ComponentQuery(@reactUtils, component, util, testers)
           func(filter)
 
-Export our matchers from this file.
+### Exported Classes
 
     module.exports = ReactMaybeMatchers
