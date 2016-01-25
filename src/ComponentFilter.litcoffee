@@ -81,6 +81,22 @@ allow us to use a more fluent English expression.
           else
             @return(null, messages)
 
+### Allow a debug message to be outputted
+
+Sometimes when debugging you want to be able to take a look at the
+nodes and output some stuff to the console.  If you pass a
+a function which returns a string to the `debug` method, it will
+fail the test and print that string.
+
+      debug: (callback) ->
+        @bind (nodes) =>
+          output = callback(nodes)
+          messages = [
+            output
+            output
+          ]
+          @return(null, messages)
+
 Export our matchers from this file.
 
     module.exports = ComponentFilter
