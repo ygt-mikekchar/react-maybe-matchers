@@ -1,0 +1,5 @@
+* react-maybe-matchers TODO
+* Finished
+** DONE Add a debug method that allows you to fail with some
+   CLOSED: [2016-01-25 Mon 14:16]
+   specified debug information

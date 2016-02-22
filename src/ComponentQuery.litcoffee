@@ -125,6 +125,22 @@ to be available.
           else
             @return(null, messages)
 
+### Allow a debug message to be outputted
+
+Sometimes when debugging you want to be able to take a look at the
+component and output some stuff to the console.  If you pass a
+a function which returns a string to the `debug` method, it will
+fail the test and print that string.
+
+      debug: (callback) ->
+        @bind (component) =>
+          output = callback(component)
+          messages = [
+            output
+            output
+          ]
+          @return(null, messages)
+
 ### Exported Classes
 
     module.exports = ComponentQuery

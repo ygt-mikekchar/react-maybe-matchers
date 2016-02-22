@@ -34,6 +34,13 @@ the matchers.  At the moment it is very disorganized.
               which.contains.tags("a")
                    .result()
 
+          it "should allow debug", ->
+            expect(@subject).toBeAComponent (which) ->
+              which.contains.tags("div").debug (nodes) ->
+                     "This should fail"
+                   .result()
+
+
           it "properly chains failing expressions", ->
             expect(@subject).not.toBeAComponent (which) ->
               which.contains.tags("a")
